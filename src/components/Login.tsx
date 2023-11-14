@@ -9,9 +9,51 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Link,
+  FormErrorMessage,
 } from '@chakra-ui/react'
+import { validateConfirmPassword, validateEmail, validateLogin, validateRegister, validateUsername } from '../utils/Login'
+import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+
+type formType = {
+  username : string,
+  password : string
+};
 
 export default function Login() {
+  const [formData, setFormData] = useState<formType>({username : "q",
+                                                      password : "q"});
+  const [usernameValid, setUsernameValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const navigate = useNavigate();
+
+  function handleChange (event : React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  function revalidateUsername() {
+    validateUsername(formData.username).then((available) => setUsernameValid(!available));
+  };
+
+  function handleSubmit(event : React.FormEvent<HTMLFormElement>) {
+    revalidateUsername();
+    if(usernameValid) {
+      const response = validateLogin(formData.username,
+                                      formData.password);
+      response.then((success) => {
+        if(success) {
+          navigate('/');
+        }else {
+          setPasswordValid(false);
+        }
+      });
+    }
+
+    event.preventDefault();
+  };
+
   return (
     <Flex
       minH={'100vh'}
@@ -27,22 +69,25 @@ export default function Login() {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}>
-          <Stack spacing={4}>
-            <FormControl id="username">
-              <FormLabel>username</FormLabel>
-              <Input type="text"/>
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={10}>
+          <form onSubmit={handleSubmit}>
+            <Stack spacing={4}>
+              <FormControl id="username" isRequired isInvalid={!usernameValid} onBlur={revalidateUsername}>
+                <FormLabel>Username</FormLabel>
+                <Input name="username" type="text" value={formData.username} onChange={handleChange}/>
+                <FormErrorMessage>Username is not exist</FormErrorMessage>
+              </FormControl>
+              <FormControl id="password" isRequired isInvalid={!passwordValid}>
+                <FormLabel>Password</FormLabel>
+                <Input name="password" type="password" value={formData.password} onChange={(e) => {handleChange(e);setPasswordValid(true);}}/>
+                <FormErrorMessage>Wrong password</FormErrorMessage>
+              </FormControl>
               <Button
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                type="submit">
                 Sign in
               </Button>
               <Stack
@@ -50,10 +95,10 @@ export default function Login() {
                 align={'start'}
                 justify={'space-between'}>
                 <Text>Belum punya akun?</Text>
-                <Text color={'blue.400'}>Buat akun</Text>
+                <Link href="/Register">Buat akun</Link>
               </Stack>
             </Stack>
-          </Stack>
+          </form>
         </Box>
       </Stack>
     </Flex>

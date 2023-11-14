@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
+import Register from './components/Register'
 
 function App() {
 
@@ -8,7 +9,8 @@ function App() {
     <BrowserRouter>
       <Navbar/>
       <Routes>
-          <Route path='/Login' element={<Login/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/Register' element={<Register/>}/>
       </Routes>
     </BrowserRouter>
   )
