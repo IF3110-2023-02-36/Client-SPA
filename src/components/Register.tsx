@@ -15,6 +15,7 @@ import {
 import { validateConfirmPassword, validateEmail, validateRegister, validateUsername } from '../utils/Login'
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../utils/LocalStorage';
 
 type formType = {
   username : string,
@@ -61,6 +62,7 @@ export default function Register() {
                                         formData.email,
                                         formData.password);
       response.then(() => {
+        setUser(formData.username);
         navigate('/');
       });
     }

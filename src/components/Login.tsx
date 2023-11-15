@@ -15,6 +15,7 @@ import {
 import { validateConfirmPassword, validateEmail, validateLogin, validateRegister, validateUsername } from '../utils/Login'
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../utils/LocalStorage';
 
 type formType = {
   username : string,
@@ -44,6 +45,7 @@ export default function Login() {
                                       formData.password);
       response.then((success) => {
         if(success) {
+          setUser(formData.username);
           navigate('/');
         }else {
           setPasswordValid(false);

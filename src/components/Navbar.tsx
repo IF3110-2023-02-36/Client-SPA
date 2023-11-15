@@ -18,6 +18,7 @@ import {
   CloseIcon,
 } from '@chakra-ui/icons'
 import NavItem from '../interfaces/NavItem'
+import { getUser, isLoggedIn } from '../utils/LocalStorage'
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -70,25 +71,74 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
-          spacing={6}>
-          <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'Login'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Sign In
-          </Button>
-        </Stack>
+        {isLoggedIn() ? 
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}>
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'black'}
+              href={'/Profile'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              {getUser()}
+            </Button>
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              href={'/Logout'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              Log Out
+            </Button>
+          </Stack>
+        :
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}>
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              href={'/Login'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              Sign In
+            </Button>
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              href={'/Register'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              Register
+            </Button>
+          </Stack>
+        }
+        
+        
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
