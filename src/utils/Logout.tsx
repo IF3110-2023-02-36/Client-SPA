@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { unsetUser } from "../utils/LocalStorage";
+import { unsetUser } from "./LocalStorage";
 
 export default function Logout() {
     unsetUser();

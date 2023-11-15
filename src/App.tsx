@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './components/Login'
+import Login from './pages/Login'
 import Navbar from './components/Navbar'
-import Register from './components/Register'
-import NotFound from './components/NotFound'
-import Logout from './components/Logout'
+import Register from './pages/Register'
+import NotFound from './pages/NotFound'
+import Logout from './utils/Logout'
 import { isLoggedIn } from './utils/LocalStorage'
 
 function App() {
