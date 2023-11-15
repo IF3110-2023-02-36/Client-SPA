@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 import Logout from './utils/Logout'
 import { isLoggedIn } from './utils/LocalStorage'
+import Balance from './pages/Balance'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <>
         <Navbar/>
         <Routes>
+          <Route path='/Balance' element={<Balance/>}/>
           <Route path='/Logout' element={<Logout/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

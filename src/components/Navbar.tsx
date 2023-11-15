@@ -26,8 +26,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/',
   },
   {
-    label: 'Transfer',
-    href: 'Transfer',
+    label: 'Balance',
+    href: 'Balance',
   },
   {
     label: 'History',
