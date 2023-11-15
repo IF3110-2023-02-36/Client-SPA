@@ -7,6 +7,7 @@ import Logout from './utils/Logout'
 import { isLoggedIn } from './utils/LocalStorage'
 import Balance from './pages/Balance'
 import AvailableOrder from './pages/AvailableOrder'
+import AvailableOrderDetail from './pages/AvailableOrderDetail'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/Balance' element={<Balance/>}/>
           <Route path='/AvailableOrder' element={<AvailableOrder/>}/>
+          <Route path='/AvailableOrderDetail' element={<AvailableOrderDetail/>}/>
           <Route path='/Logout' element={<Logout/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

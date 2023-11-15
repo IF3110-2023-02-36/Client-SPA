@@ -4,6 +4,8 @@ import {
   CardBody, 
   CardHeader, 
   Heading,
+  LinkBox,
+  LinkOverlay,
   Stack,
   StackDivider,
   Text
@@ -21,31 +23,35 @@ export default function AvailableOrderCard({order} : paramInterface) {
     borderColor={"black"}
     borderRadius={20}
     >
-    <CardHeader>
-      <Heading>
-        {order.address}
-      </Heading>
-    </CardHeader>
-    <CardBody>
-      <Stack divider={<StackDivider/>} spacing={1}>
-        <Box>
-          <Text fontSize={"lg"} fontWeight={"bold"}>
-            Nama Pemesan
-          </Text>
-          <Text>
-            {order.customerName}
-          </Text>
-        </Box>
-        <Box>
-          <Text fontSize={"lg"} fontWeight={"bold"}>
-            Ongkos Kirim
-          </Text>
-          <Text>
-            {order.salary}
-          </Text>
-        </Box>
-      </Stack>
-    </CardBody>
+    <LinkBox>
+      <CardHeader>
+        <Heading>
+          <LinkOverlay href="/AvailableOrderDetail">
+            {order.address}
+          </LinkOverlay>
+        </Heading>
+      </CardHeader>
+      <CardBody>
+        <Stack divider={<StackDivider/>} spacing={1}>
+          <Box>
+            <Text fontSize={"lg"} fontWeight={"bold"}>
+              Nama Pemesan
+            </Text>
+            <Text>
+              {order.customerName}
+            </Text>
+          </Box>
+          <Box>
+            <Text fontSize={"lg"} fontWeight={"bold"}>
+              Ongkos Kirim
+            </Text>
+            <Text>
+              {order.salary}
+            </Text>
+          </Box>
+        </Stack>
+      </CardBody>
+    </LinkBox>
   </Card>
   );
 }
