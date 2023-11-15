@@ -18,7 +18,7 @@ import {
   CloseIcon,
 } from '@chakra-ui/icons'
 import NavItem from '../interfaces/NavItem'
-import { getUser, isLoggedIn } from '../utils/LocalStorage'
+import { getUser } from '../utils/LocalStorage'
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -42,11 +42,14 @@ const NAV_ITEMS: Array<NavItem> = [
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
 
+  const backgroundColor = useColorModeValue("red.600", "white");
+  const textColor = useColorModeValue("white.600", "white");
+
   return (
     <Box>
       <Flex
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
+        bg={backgroundColor}
+        color={textColor}
         minH={'60px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -70,77 +73,38 @@ export default function Navbar() {
             <DesktopNav />
           </Flex>
         </Flex>
-
-        {isLoggedIn() ? 
-          <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-              as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'black'}
-              href={'/Profile'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              {getUser()}
-            </Button>
-            <Button
-              as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'/Logout'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Log Out
-            </Button>
-          </Stack>
-        :
-          <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-              as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'/Login'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign In
-            </Button>
-            <Button
-              as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'/Register'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Register
-            </Button>
-          </Stack>
-        }
-        
-        
+        <Stack
+          flex={{ base: 1, md: 0 }}
+          justify={'flex-end'}
+          direction={'row'}
+          spacing={6}>
+          <Button
+            as={'a'}
+            display={{ base: 'none', md: 'inline-flex' }}
+            fontSize={'sm'}
+            fontWeight={600}
+            color={'black'}
+            href={'/Profile'}
+            _hover={{
+              bg: 'pink.300',
+            }}>
+            {getUser()}
+          </Button>
+          <Button
+            as={'a'}
+            display={{ base: 'none', md: 'inline-flex' }}
+            fontSize={'sm'}
+            fontWeight={600}
+            color={'white'}
+            bg={'pink.400'}
+            href={'/Logout'}
+            _hover={{
+              bg: 'pink.300',
+            }}>
+            Log Out
+          </Button>
+        </Stack>
       </Flex>
-
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
@@ -149,28 +113,28 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200')
-  const linkHoverColor = useColorModeValue('gray.800', 'white')
-
+  const textColor = useColorModeValue("white.600", "white");
+  const hoverColor = useColorModeValue("pink.800", "white");
   return (
     <Stack direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Box
+              <Button
                 as="a"
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'sm'}
                 fontWeight={500}
-                color={linkColor}
+                color={textColor}
                 _hover={{
                   textDecoration: 'none',
-                  color: linkHoverColor,
+                  color: hoverColor,
+                  bg: 'pink.300',
                 }}>
                 {navItem.label}
-              </Box>
+              </Button>
             </PopoverTrigger>
           </Popover>
         </Box>
