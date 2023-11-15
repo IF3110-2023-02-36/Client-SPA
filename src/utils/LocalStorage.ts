@@ -1,5 +1,6 @@
 
 export function setUser(username : string) {
+    // TODO : async issue
     localStorage.setItem('username', username);
 }
 
@@ -14,6 +15,5 @@ export function getUser() {
 
 export function isLoggedIn() {
     const loggedIn = (getUser() !== null);
-    console.log('isLoggedIn', loggedIn);
     return loggedIn;
 }

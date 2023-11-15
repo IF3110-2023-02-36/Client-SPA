@@ -25,7 +25,6 @@ export async function validateRegister(username : string, name : string, email :
 
 export async function validateLogin(username : string, password : string) {
     const response = await login(username, password);
-        console.log("util response", response);
-        const success = (response.data === "success");
+    const success = (response.data === "success");
     return success;
 }

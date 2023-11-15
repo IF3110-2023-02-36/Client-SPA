@@ -12,7 +12,7 @@ import {
   Link,
   FormErrorMessage,
 } from '@chakra-ui/react'
-import { validateConfirmPassword, validateEmail, validateLogin, validateRegister, validateUsername } from '../utils/Login'
+import { validateLogin, validateUsername } from '../utils/Login'
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { setUser } from '../utils/LocalStorage';
@@ -23,8 +23,8 @@ type formType = {
 };
 
 export default function Login() {
-  const [formData, setFormData] = useState<formType>({username : "q",
-                                                      password : "q"});
+  const [formData, setFormData] = useState<formType>({username : "",
+                                                      password : ""});
   const [usernameValid, setUsernameValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
   const navigate = useNavigate();
@@ -32,11 +32,11 @@ export default function Login() {
   function handleChange (event : React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
+  }
 
   function revalidateUsername() {
     validateUsername(formData.username).then((available) => setUsernameValid(!available));
-  };
+  }
 
   function handleSubmit(event : React.FormEvent<HTMLFormElement>) {
     revalidateUsername();
@@ -54,7 +54,7 @@ export default function Login() {
     }
 
     event.preventDefault();
-  };
+  }
 
   return (
     <Flex

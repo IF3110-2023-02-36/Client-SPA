@@ -47,7 +47,6 @@ export async function login(username : string, password : string) {
         const data = {username : username, 
                         password : password};
         const response = await axios.post<string>(API_URL, data);
-        console.log("api response", response);
         return response;
     } catch(err) {
         alert(err);

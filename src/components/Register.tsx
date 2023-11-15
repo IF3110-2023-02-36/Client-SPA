@@ -26,11 +26,11 @@ type formType = {
 };
 
 export default function Register() {
-  const [formData, setFormData] = useState<formType>({username : "q",
-                                                      name : "q",
-                                                      email : "qwe@gmail.com",
-                                                      password : "q",
-                                                      confirmPassword : "q"});
+  const [formData, setFormData] = useState<formType>({username : "",
+                                                      name : "",
+                                                      email : "",
+                                                      password : "",
+                                                      confirmPassword : ""});
   const [usernameValid, setUsernameValid] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
@@ -39,18 +39,18 @@ export default function Register() {
   function handleChange (event : React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
+  }
 
   function revalidateUsername() {
     validateUsername(formData.username).then((available) => setUsernameValid(available));
-  };
+  }
   function revalidateEmail() {
     validateEmail(formData.email).then((available) => setEmailValid(available));
-  };
+  }
   function revalidatePassword() {
     const valid = validateConfirmPassword(formData.password, formData.confirmPassword);
     setPasswordValid(valid);
-  };
+  }
 
   function handleSubmit(event : React.FormEvent<HTMLFormElement>) {
     revalidateUsername();
@@ -68,7 +68,7 @@ export default function Register() {
     }
 
     event.preventDefault();
-  };
+  }
 
   return (
     <Flex
