@@ -9,6 +9,7 @@ import Balance from './pages/Balance'
 import AvailableOrder from './pages/AvailableOrder'
 import AvailableOrderDetail from './pages/AvailableOrderDetail'
 import PickedOrder from './pages/PickedOrder'
+import PickedOrderDetail from './pages/PickedOrderDetail'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/AvailableOrder' element={<AvailableOrder/>}/>
           <Route path='/AvailableOrderDetail' element={<AvailableOrderDetail/>}/>
           <Route path='/PickedOrder' element={<PickedOrder/>}/>
+          <Route path='/PickedOrderDetail' element={<PickedOrderDetail/>}/>
           <Route path='/Logout' element={<Logout/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

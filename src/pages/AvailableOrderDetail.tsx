@@ -112,7 +112,6 @@ const dummyData : AvailableOrderDetailInterface = {
               >
               Ambil Order
             </Button>
-            {/* TODO : table */}
           </Stack>
         </Stack>
       </Box>
