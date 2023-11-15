@@ -30,8 +30,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: 'Balance',
   },
   {
-    label: 'History',
-    href: 'History',
+    label: 'Available Order',
+    href: 'AvailableOrder',
   },
   {
     label: 'Promo',

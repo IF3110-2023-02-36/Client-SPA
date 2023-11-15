@@ -44,7 +44,7 @@ export default function Balance() {
       console.log(res);
       setBalance(res.data);
     });
-  }, []);
+  }, [username]);
 
   return (
     <Flex
