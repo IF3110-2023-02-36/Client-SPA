@@ -1,8 +1,8 @@
-import OrderDetailInterface from "./OrderDetailInterface"
+import OrderDetail from "./OrderDetail"
 
 export default interface AvailableOrderDetailInterface {
     address : string
     customerName : string
     salary : number
-    orderDetails : OrderDetailInterface[]
+    orderDetails : OrderDetail[]
 }

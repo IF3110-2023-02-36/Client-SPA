@@ -1,5 +1,5 @@
 
-export default interface OrderDetailInterface {
+export default interface OrderDetail {
     productName : string
     quantity : number
 }

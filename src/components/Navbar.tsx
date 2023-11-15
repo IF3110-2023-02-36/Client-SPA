@@ -34,8 +34,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: 'AvailableOrder',
   },
   {
-    label: 'Promo',
-    href: 'Promo',
+    label: 'Picked Order',
+    href: 'PickedOrder',
   },
 ]
 
