@@ -75,8 +75,10 @@ export default function Register() {
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      bg={useColorModeValue('red.600', 'white')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}
+        bg={useColorModeValue('white', 'gray.700')}
+        >
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Register</Heading>
         </Stack>
@@ -89,25 +91,45 @@ export default function Register() {
             <Stack spacing={4}>
               <FormControl id="username" isRequired isInvalid={!usernameValid} onBlur={revalidateUsername}>
                 <FormLabel>Username</FormLabel>
-                <Input name="username" type="text" value={formData.username} onChange={handleChange}/>
+                <Input name="username" type="text" 
+                  value={formData.username} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
                 <FormErrorMessage>Username already used</FormErrorMessage>
               </FormControl>
               <FormControl id="name" isRequired>
                 <FormLabel>Name</FormLabel>
-                <Input name="name" type="text" value={formData.name} onChange={handleChange}/>
+                <Input name="name" type="text" 
+                  value={formData.name} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
               </FormControl>
               <FormControl id="email" isRequired isInvalid={!emailValid} onBlur={revalidateEmail}>
                 <FormLabel>Email</FormLabel>
-                <Input name="email" type="email" value={formData.email} onChange={handleChange}/>
+                <Input name="email" type="email" 
+                  value={formData.email} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
                 <FormErrorMessage>Email already used</FormErrorMessage>
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input name="password" type="password" value={formData.password} onChange={handleChange}/>
+                <Input name="password" type="password" 
+                  value={formData.password} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
               </FormControl>
               <FormControl id="confirmPassword" isRequired isInvalid={!passwordValid} onBlur={revalidatePassword}>
                 <FormLabel>Confirm Password</FormLabel>
-                <Input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange}/>
+                <Input name="confirmPassword" type="password" 
+                  value={formData.confirmPassword} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
                 <FormErrorMessage>Password is not same</FormErrorMessage>
               </FormControl>
               <Button

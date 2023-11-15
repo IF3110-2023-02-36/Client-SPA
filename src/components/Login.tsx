@@ -61,8 +61,10 @@ export default function Login() {
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      bg={useColorModeValue('red.600', 'white')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}
+        bg={useColorModeValue('white', 'gray.700')}
+        >
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Login</Heading>
         </Stack>
@@ -75,12 +77,20 @@ export default function Login() {
             <Stack spacing={4}>
               <FormControl id="username" isRequired isInvalid={!usernameValid} onBlur={revalidateUsername}>
                 <FormLabel>Username</FormLabel>
-                <Input name="username" type="text" value={formData.username} onChange={handleChange}/>
+                <Input name="username" type="text" 
+                  value={formData.username} 
+                  onChange={handleChange}
+                  borderColor={"black"}
+                  />
                 <FormErrorMessage>Username is not exist</FormErrorMessage>
               </FormControl>
               <FormControl id="password" isRequired isInvalid={!passwordValid}>
                 <FormLabel>Password</FormLabel>
-                <Input name="password" type="password" value={formData.password} onChange={(e) => {handleChange(e);setPasswordValid(true);}}/>
+                <Input name="password" type="password" 
+                  value={formData.password} 
+                  onChange={(e) => {handleChange(e);setPasswordValid(true);}}
+                  borderColor={"black"}
+                  />
                 <FormErrorMessage>Wrong password</FormErrorMessage>
               </FormControl>
               <Button
