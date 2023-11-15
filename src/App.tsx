@@ -11,6 +11,7 @@ import AvailableOrderDetail from './pages/AvailableOrderDetail'
 import PickedOrder from './pages/PickedOrder'
 import PickedOrderDetail from './pages/PickedOrderDetail'
 import History from './pages/History'
+import HistoryDetail from './pages/HistoryDetail'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/PickedOrder' element={<PickedOrder/>}/>
           <Route path='/PickedOrderDetail' element={<PickedOrderDetail/>}/>
           <Route path='/History' element={<History/>}/>
+          <Route path='/HistoryDetail' element={<HistoryDetail/>}/>
           <Route path='/Logout' element={<Logout/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
