@@ -15,6 +15,8 @@ import OrderInterface from '../interfaces/OrderInterface';
 type paramInterface = {order : OrderInterface};
 
 export default function PickedOrderCard({order} : paramInterface) {
+  const hrefLink = `/PickedOrderDetail/${order.id}`;
+  
   return (
   <Card
     width={"80%"}
@@ -26,7 +28,7 @@ export default function PickedOrderCard({order} : paramInterface) {
     <LinkBox>
       <CardHeader>
         <Heading>
-          <LinkOverlay href="/PickedOrderDetail">
+          <LinkOverlay href={hrefLink}>
             {order.alamat}
           </LinkOverlay>
         </Heading>

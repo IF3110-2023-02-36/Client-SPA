@@ -26,7 +26,7 @@ function App() {
           <Route path='/AvailableOrder' element={<AvailableOrder/>}/>
           <Route path='/AvailableOrderDetail/:id' element={<AvailableOrderDetail/>}/>
           <Route path='/PickedOrder' element={<PickedOrder/>}/>
-          <Route path='/PickedOrderDetail' element={<PickedOrderDetail/>}/>
+          <Route path='/PickedOrderDetail/:id' element={<PickedOrderDetail/>}/>
           <Route path='/History' element={<History/>}/>
           <Route path='/HistoryDetail' element={<HistoryDetail/>}/>
           <Route path='/Profile' element={<Profile/>}/>
