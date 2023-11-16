@@ -19,9 +19,9 @@ export default function PickedOrder() {
     getUserDetail(username ? username : "").then(
       (userDetail) => {
         const response = getOrderByCourier(userDetail.data.id);
-        response.then((orders) => {
-          console.log(orders.data);
-          setOrders(orders.data);
+        response.then((order) => {
+          console.log(order.data);
+          setOrders(order.data);
         });
       }
     );

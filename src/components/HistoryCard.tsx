@@ -15,6 +15,8 @@ import HistoryInterface from '../interfaces/HistoryInterface';
 type paramInterface = {history : HistoryInterface};
 
 export default function HistoryCard({history} : paramInterface) {
+  const hrefLink = `/HistoryDetail/${history.id}`;
+
   return (
   <Card
     width={"80%"}
@@ -26,7 +28,7 @@ export default function HistoryCard({history} : paramInterface) {
     <LinkBox>
       <CardHeader>
         <Heading>
-          <LinkOverlay href="/HistoryDetail">
+          <LinkOverlay href={hrefLink}>
             {history.address}
           </LinkOverlay>
         </Heading>

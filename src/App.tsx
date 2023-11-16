@@ -28,7 +28,7 @@ function App() {
           <Route path='/PickedOrder' element={<PickedOrder/>}/>
           <Route path='/PickedOrderDetail/:id' element={<PickedOrderDetail/>}/>
           <Route path='/History' element={<History/>}/>
-          <Route path='/HistoryDetail' element={<HistoryDetail/>}/>
+          <Route path='/HistoryDetail/:id' element={<HistoryDetail/>}/>
           <Route path='/Profile' element={<Profile/>}/>
           <Route path='/Logout' element={<Logout/>}/>
           <Route path='*' element={<NotFound/>}/>

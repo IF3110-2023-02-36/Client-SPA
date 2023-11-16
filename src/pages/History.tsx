@@ -4,51 +4,23 @@ import {
   Stack,
 } from '@chakra-ui/react'
 import HistoryInterface from '../interfaces/HistoryInterface';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HistoryCard from '../components/HistoryCard';
+import { getUser } from '../utils/LocalStorage';
+import { getHistory } from '../utils/History';
+import { getUserDetail } from '../utils/Profile';
 
-// TODO : fetch data from SOAP
-const dummyData : HistoryInterface[] = [
-  {
-    address : "jl. imam bonjol no.69",
-    customerName : "ukin",
-    salary : 100,
-    rating : 0
-  },
-  {
-    address : "bullet",
-    customerName : "ishraul",
-    salary : 1111,
-    rating : 2
-  },
-  {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    rating : 3
-  },
-  {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    rating : 5
-  },
-  {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    rating : 5
-  },
-  {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    rating : 5
-  }
-];
 
 export default function History() {
-  const [histories, setHistories] = useState<HistoryInterface[]>(dummyData);
+  const username = getUser();
+  const [histories, setHistories] = useState<HistoryInterface[]>([]);
+
+  useEffect(() => {
+    const response = getHistory(username ? username : "");
+    response.then((history) => {
+      setHistories(history);
+    });
+  }, []);
 
   return (
     <Box

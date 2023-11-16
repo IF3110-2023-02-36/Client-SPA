@@ -13,9 +13,9 @@ export default function AvailableOrder() {
 
   useEffect(() => {
     const response = getAvailableOrder();
-    response.then((availableOrder) => {
-      console.log(availableOrder.data);
-      setOrders(availableOrder.data);
+    response.then((order) => {
+      console.log(order.data);
+      setOrders(order.data);
     });
   }, []);
 
