@@ -6,46 +6,17 @@ import {
 import OrderInterface from '../interfaces/OrderInterface';
 import { useEffect, useState } from 'react'
 import AvailableOrderCard from '../components/AvailableOrderCard';
-
-// TODO : fetch data from SOAP
-const dummyData : OrderInterface[] = [
-  {
-    alamat : "jl. imam bonjol no.69",
-    nama_penerima : "ukin",
-    biaya_pengiriman : 100
-  },
-  {
-    alamat : "bullet",
-    nama_penerima : "ishraul",
-    biaya_pengiriman : 1111
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69
-  }
-];
+import { getAvailableOrder } from '../utils/Order';
 
 export default function AvailableOrder() {
-  const [orders, setOrders] = useState<OrderInterface[]>(dummyData);
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
 
   useEffect(() => {
-    
+    const response = getAvailableOrder();
+    response.then((availableOrder) => {
+      console.log(availableOrder.data);
+      setOrders(availableOrder.data);
+    });
   }, []);
 
   return (
