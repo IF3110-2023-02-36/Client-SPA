@@ -27,19 +27,19 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Balance',
-    href: 'Balance',
+    href: '/Balance',
   },
   {
     label: 'Available Order',
-    href: 'AvailableOrder',
+    href: '/AvailableOrder',
   },
   {
     label: 'Picked Order',
-    href: 'PickedOrder',
+    href: '/PickedOrder',
   },
   {
     label: 'History',
-    href: 'History',
+    href: '/History',
   },
 ]
 
