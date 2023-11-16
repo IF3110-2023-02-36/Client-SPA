@@ -1,6 +1,5 @@
 import { 
   Box, 
-  Button, 
   Heading,
   Stack,
   StackDivider,
@@ -24,19 +23,19 @@ const dummyData : HistoryDetailInterface = {
   rating : 0,
   orderDetails : [
     {
-      productName : "pisau cukur",
+      nama_produk : "pisau cukur",
       quantity : 69
     },
     {
-      productName : "ivan gunawan",
+      nama_produk : "ivan gunawan",
       quantity : 420
     },
     {
-      productName : "pisau cukur 2",
+      nama_produk : "pisau cukur 2",
       quantity : 692
     },
     {
-      productName : "ivan gunawan 2",
+      nama_produk : "ivan gunawan 2",
       quantity : 4202
     },
   ]
@@ -102,7 +101,7 @@ export default function HistoryDetail() {
               <Tbody>
                 {history.orderDetails.map((detail) => (
                   <Tr>
-                    <Td>{detail.productName}</Td>
+                    <Td>{detail.nama_produk}</Td>
                     <Td>{detail.quantity}</Td>
                   </Tr>
                 ))}

@@ -17,36 +17,38 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import PickedOrderDetailInterface from '../interfaces/PickedOrderDetailInterface';
+import OrderDetail from '../interfaces/OrderDetail';
+import OrderInterface from '../interfaces/OrderInterface';
   
-  // TODO : fetch data from SOAP
-const dummyData : PickedOrderDetailInterface = {
-  address : "jl.ngawi",
-  customerName : "rusdi",
-  salary : 69,
-  description : "aku akan datang",
-  orderDetails : [
-    {
-      productName : "pisau cukur",
-      quantity : 69
-    },
-    {
-      productName : "ivan gunawan",
-      quantity : 420
-    },
-    {
-      productName : "pisau cukur 2",
-      quantity : 692
-    },
-    {
-      productName : "ivan gunawan 2",
-      quantity : 4202
-    },
-  ]
+const orderDummy : OrderInterface = {
+  alamat : "jl.ngawi",
+  nama_penerima : "rusdi",
+  biaya_pengiriman : 69,
+  keterangan : "aku akan datang",
 }
 
+const detailDummy : OrderDetail[] = [
+  {
+    nama_produk : "pisau cukur",
+    quantity : 69
+  },
+  {
+    nama_produk : "ivan gunawan",
+    quantity : 420
+  },
+  {
+    nama_produk : "pisau cukur 2",
+    quantity : 692
+  },
+  {
+    nama_produk : "ivan gunawan 2",
+    quantity : 4202
+  },
+]
+
 export default function PickedOrderDetail() {
-  const [order, setOrder] = useState<PickedOrderDetailInterface>(dummyData);
+  const [order, setOrder] = useState<OrderInterface>(orderDummy);
+  const [orderDetails, setOrderDetails] = useState<OrderDetail[]>(detailDummy);
   const [newDescription, setNewDescription] = useState("");
   // TODO : implement pick order functionality
 
@@ -62,7 +64,7 @@ export default function PickedOrderDetail() {
         py={10}
         >
         <Heading p={5}>
-          {order.address}
+          {order.alamat}
         </Heading>
         
         <Stack divider={<StackDivider/>} spacing={2}>
@@ -71,7 +73,7 @@ export default function PickedOrderDetail() {
               Nama Pemesan
             </Text>
             <Text>
-              {order.customerName}
+              {order.nama_penerima}
             </Text>
           </Box>
           <Box>
@@ -79,7 +81,7 @@ export default function PickedOrderDetail() {
               Ongkos Kirim
             </Text>
             <Text>
-              {order.salary}
+              {order.biaya_pengiriman}
             </Text>
           </Box>
           <Box>
@@ -96,9 +98,9 @@ export default function PickedOrderDetail() {
                 </Tr>
               </Thead>
               <Tbody>
-                {order.orderDetails.map((detail) => (
+                {orderDetails.map((detail) => (
                   <Tr>
-                    <Td>{detail.productName}</Td>
+                    <Td>{detail.nama_produk}</Td>
                     <Td>{detail.quantity}</Td>
                   </Tr>
                 ))}

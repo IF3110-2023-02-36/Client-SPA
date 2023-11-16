@@ -1,4 +1,3 @@
-import { fetchBalance, withdraw } from "../api/Balance";
 import { fetchUserDetail, putUserDetail } from "../api/Profile";
 import UserInterface from "../interfaces/UserInterface";
 

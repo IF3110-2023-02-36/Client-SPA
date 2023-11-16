@@ -3,46 +3,50 @@ import {
   Heading,
   Stack,
 } from '@chakra-ui/react'
-import AvailableOrderInterface from '../interfaces/AvailableOrderInterface';
-import { useState } from 'react'
+import OrderInterface from '../interfaces/OrderInterface';
+import { useEffect, useState } from 'react'
 import AvailableOrderCard from '../components/AvailableOrderCard';
 
 // TODO : fetch data from SOAP
-const dummyData : AvailableOrderInterface[] = [
+const dummyData : OrderInterface[] = [
   {
-    address : "jl. imam bonjol no.69",
-    customerName : "ukin",
-    salary : 100
+    alamat : "jl. imam bonjol no.69",
+    nama_penerima : "ukin",
+    biaya_pengiriman : 100
   },
   {
-    address : "bullet",
-    customerName : "ishraul",
-    salary : 1111
+    alamat : "bullet",
+    nama_penerima : "ishraul",
+    biaya_pengiriman : 1111
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69
   }
 ];
 
 export default function AvailableOrder() {
-  const [orders, setOrders] = useState<AvailableOrderInterface[]>(dummyData);
+  const [orders, setOrders] = useState<OrderInterface[]>(dummyData);
+
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <Box

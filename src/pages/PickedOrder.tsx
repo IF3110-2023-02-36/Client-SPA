@@ -3,52 +3,52 @@ import {
   Heading,
   Stack,
 } from '@chakra-ui/react'
-import PickedOrderInterface from '../interfaces/PickedOrderInterface';
+import OrderInterface from '../interfaces/OrderInterface';
 import { useState } from 'react'
 import PickedOrderCard from '../components/PickedOrderCard';
 
 // TODO : fetch data from SOAP
-const dummyData : PickedOrderInterface[] = [
+const dummyData : OrderInterface[] = [
   {
-    address : "jl. imam bonjol no.69",
-    customerName : "ukin",
-    salary : 100,
-    description : "dimas lagi main sama mas ukin"
+    alamat : "jl. imam bonjol no.69",
+    nama_penerima : "ukin",
+    biaya_pengiriman : 100,
+    keterangan : "dimas lagi main sama mas ukin"
   },
   {
-    address : "bullet",
-    customerName : "ishraul",
-    salary : 1111,
-    description : "aku butuh peluru"
+    alamat : "bullet",
+    nama_penerima : "ishraul",
+    biaya_pengiriman : 1111,
+    keterangan : "aku butuh peluru"
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    description : "aku akan datang"
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69,
+    keterangan : "aku akan datang"
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    description : "aku akan datang"
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69,
+    keterangan : "aku akan datang"
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    description : "aku akan datang"
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69,
+    keterangan : "aku akan datang"
   },
   {
-    address : "jl.ngawi",
-    customerName : "rusdi",
-    salary : 69,
-    description : "aku akan datang"
+    alamat : "jl.ngawi",
+    nama_penerima : "rusdi",
+    biaya_pengiriman : 69,
+    keterangan : "aku akan datang"
   }
 ];
 
 export default function PickedOrder() {
-  const [orders, setOrders] = useState<PickedOrderInterface[]>(dummyData);
+  const [orders, setOrders] = useState<OrderInterface[]>(dummyData);
 
   return (
     <Box

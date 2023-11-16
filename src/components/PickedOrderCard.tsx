@@ -10,9 +10,9 @@ import {
   StackDivider,
   Text
 } from '@chakra-ui/react'
-import PickedOrderInterface from '../interfaces/PickedOrderInterface';
+import OrderInterface from '../interfaces/OrderInterface';
 
-type paramInterface = {order : PickedOrderInterface};
+type paramInterface = {order : OrderInterface};
 
 export default function PickedOrderCard({order} : paramInterface) {
   return (
@@ -27,7 +27,7 @@ export default function PickedOrderCard({order} : paramInterface) {
       <CardHeader>
         <Heading>
           <LinkOverlay href="/PickedOrderDetail">
-            {order.address}
+            {order.alamat}
           </LinkOverlay>
         </Heading>
       </CardHeader>
@@ -38,7 +38,7 @@ export default function PickedOrderCard({order} : paramInterface) {
               Nama Pemesan
             </Text>
             <Text>
-              {order.customerName}
+              {order.nama_penerima}
             </Text>
           </Box>
           <Box>
@@ -46,7 +46,7 @@ export default function PickedOrderCard({order} : paramInterface) {
               Ongkos Kirim
             </Text>
             <Text>
-              {order.salary}
+              {order.biaya_pengiriman}
             </Text>
           </Box>
           <Box>
@@ -54,7 +54,7 @@ export default function PickedOrderCard({order} : paramInterface) {
               Keterangan
             </Text>
             <Text>
-              {order.description}
+              {order.keterangan}
             </Text>
           </Box>
         </Stack>
