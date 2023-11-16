@@ -60,7 +60,7 @@ export default function History() {
         align={'center'}
         >
         <Heading>
-          Pesanan yang tersedia
+          History Pengantaran
         </Heading>
         {histories.map(history => (
           <HistoryCard history={history}/>

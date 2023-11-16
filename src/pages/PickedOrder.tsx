@@ -60,7 +60,7 @@ export default function PickedOrder() {
         align={'center'}
         >
         <Heading>
-          Pesanan yang tersedia
+          Pesanan yang kamu ambil
         </Heading>
         {orders.map(order => (
           <PickedOrderCard order={order}/>
