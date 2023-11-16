@@ -13,3 +13,14 @@ export async function fetchUserDetail(username : string) {
         throw err;
     }
 }
+
+export async function putUserDetail(username : string, newUserDetail : UserInterface) {
+    try {
+        const API_URL = REST_URL + `/user/user-detail/${username}`;
+        const response = await axios.put<UserInterface>(API_URL, newUserDetail);
+        return response;
+    } catch(err) {
+        alert(err);
+        throw err;
+    }
+}
