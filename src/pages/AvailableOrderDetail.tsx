@@ -13,39 +13,33 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OrderDetail from '../interfaces/OrderDetail';
 import OrderInterface from '../interfaces/OrderInterface';
-  
-// TODO : fetch data from SOAP
-const orderDummy : OrderInterface = {
-  alamat : "jl.ngawi",
-  nama_penerima : "rusdi",
-  biaya_pengiriman : 69,
-}
-const detailDummy : OrderDetail[] = [
-  {
-    nama_produk : "pisau cukur",
-    quantity : 69
-  },
-  {
-    nama_produk : "ivan gunawan",
-    quantity : 420
-  },
-  {
-    nama_produk : "pisau cukur 2",
-    quantity : 692
-  },
-  {
-    nama_produk : "ivan gunawan 2",
-    quantity : 4202
-  },
-]
+import { useParams } from 'react-router-dom';
+import { getOrderById, getOrderDetails } from '../utils/Order';
+
 
 export default function AvailableOrderDetail() {
-  const [order, setOrder] = useState<OrderInterface>(orderDummy);
-  const [orderDetails, setOrderDetails] = useState<OrderDetail[]>(detailDummy);
-  // TODO : implement pick order functionality
+  const { id } = useParams();
+  const orderId = parseInt(id ? id : "0");
+  const [order, setOrder] = useState<OrderInterface>();
+  const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
+
+  useEffect(() => {
+    const orderResponse = getOrderById(orderId);
+    const detailResponse = getOrderDetails(orderId);
+
+    orderResponse.then((response) => {
+      setOrder(response.data);
+      console.log("order", response.data);
+    });
+
+    detailResponse.then((response) => {
+      setOrderDetails(response.data);
+      console.log("detail", response.data);
+    });
+  }, []);
 
   return (
     <Box
@@ -59,7 +53,7 @@ export default function AvailableOrderDetail() {
         py={10}
         >
         <Heading p={5}>
-          {order.alamat}
+          {order?.alamat}
         </Heading>
         
         <Stack divider={<StackDivider/>} spacing={2}>
@@ -68,7 +62,7 @@ export default function AvailableOrderDetail() {
               Nama Pemesan
             </Text>
             <Text>
-              {order.nama_penerima}
+              {order?.nama_penerima}
             </Text>
           </Box>
           <Box>
@@ -76,7 +70,7 @@ export default function AvailableOrderDetail() {
               Ongkos Kirim
             </Text>
             <Text>
-              {order.biaya_pengiriman}
+              {order?.biaya_pengiriman}
             </Text>
           </Box>
           <Box>
@@ -95,13 +89,14 @@ export default function AvailableOrderDetail() {
               <Tbody>
                 {orderDetails.map((detail) => (
                   <Tr>
-                    <Td>{detail.nama_produk}</Td>
+                    <Td>{detail.nama_product}</Td>
                     <Td>{detail.quantity}</Td>
                   </Tr>
                 ))}
               </Tbody>
             </Table>
           </TableContainer>
+          {/* TODO : implement pick order */}
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}

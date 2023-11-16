@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path='/Balance' element={<Balance/>}/>
           <Route path='/AvailableOrder' element={<AvailableOrder/>}/>
-          <Route path='/AvailableOrderDetail' element={<AvailableOrderDetail/>}/>
+          <Route path='/AvailableOrderDetail/:id' element={<AvailableOrderDetail/>}/>
           <Route path='/PickedOrder' element={<PickedOrder/>}/>
           <Route path='/PickedOrderDetail' element={<PickedOrderDetail/>}/>
           <Route path='/History' element={<History/>}/>
