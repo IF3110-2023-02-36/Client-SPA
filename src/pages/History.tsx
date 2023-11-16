@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 import HistoryCard from '../components/HistoryCard';
 import { getUser } from '../utils/LocalStorage';
 import { getHistory } from '../utils/History';
-import { getUserDetail } from '../utils/Profile';
 
 
 export default function History() {

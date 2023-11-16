@@ -12,38 +12,33 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import HistoryInterface from '../interfaces/HistoryInterface';
+import { getHistoryById, getHistoryDetails } from '../utils/History';
 import HistoryDetailInterface from '../interfaces/HistoryDetailInterface';
   
-// TODO : fetch data from SOAP
-const dummyData : HistoryDetailInterface = {
-  address : "jl.ngawi",
-  customerName : "rusdi",
-  salary : 69,
-  rating : 0,
-  orderDetails : [
-    {
-      nama_produk : "pisau cukur",
-      quantity : 69
-    },
-    {
-      nama_produk : "ivan gunawan",
-      quantity : 420
-    },
-    {
-      nama_produk : "pisau cukur 2",
-      quantity : 692
-    },
-    {
-      nama_produk : "ivan gunawan 2",
-      quantity : 4202
-    },
-  ]
-}
 
 export default function HistoryDetail() {
-  const [history, setHistory] = useState<HistoryDetailInterface>(dummyData);
-  // TODO : implement pick history functionality
+  const { id } = useParams();
+  const historyId= parseInt(id ? id : "0");
+  const [history, setHistory] = useState<HistoryInterface>();
+  const [historyDetails, setHistoryDetails] = useState<HistoryDetailInterface[]>([]);
+
+  useEffect(() => {
+    const historyResponse = getHistoryById(historyId);
+    const detailResponse = getHistoryDetails(historyId);
+
+    historyResponse.then((response) => {
+      setHistory(response);
+      console.log("history", response);
+    });
+
+    detailResponse.then((response) => {
+      setHistoryDetails(response);
+      console.log("detail", response);
+    });
+  }, []);
 
   return (
     <Box
@@ -57,7 +52,7 @@ export default function HistoryDetail() {
         py={10}
         >
         <Heading p={5}>
-          {history.address}
+          {history?.alamat_tujuan}
         </Heading>
         
         <Stack divider={<StackDivider/>} spacing={2}>
@@ -66,7 +61,7 @@ export default function HistoryDetail() {
               Nama Pemesan
             </Text>
             <Text>
-              {history.customerName}
+              {history?.nama_penerima}
             </Text>
           </Box>
           <Box>
@@ -74,7 +69,7 @@ export default function HistoryDetail() {
               Ongkos Kirim
             </Text>
             <Text>
-              {history.salary}
+              {history?.biaya_pengiriman}
             </Text>
           </Box>
           <Box>
@@ -82,7 +77,7 @@ export default function HistoryDetail() {
               Rating
             </Text>
             <Text>
-              {history.rating === 0 ? "Belum di rating" : history.rating}
+              {history?.rating === 0 ? "Belum di rating" : history?.rating}
             </Text>
           </Box>
           <Box>
@@ -99,9 +94,9 @@ export default function HistoryDetail() {
                 </Tr>
               </Thead>
               <Tbody>
-                {history.orderDetails.map((detail) => (
+                {historyDetails?.map((detail) => (
                   <Tr>
-                    <Td>{detail.nama_produk}</Td>
+                    <Td>{detail.product_name}</Td>
                     <Td>{detail.quantity}</Td>
                   </Tr>
                 ))}

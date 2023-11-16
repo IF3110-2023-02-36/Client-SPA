@@ -1,9 +1,8 @@
-import OrderDetail from "./OrderDetail"
 
 export default interface HistoryDetailInterface {
-    address : string
-    customerName : string
-    salary : number
-    rating : number
-    orderDetails : OrderDetail[]
+    id: number
+    history_id : number
+    product_name: string
+    quantity: number
+    price : number
 }

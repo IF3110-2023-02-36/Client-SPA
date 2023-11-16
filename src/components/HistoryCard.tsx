@@ -29,7 +29,7 @@ export default function HistoryCard({history} : paramInterface) {
       <CardHeader>
         <Heading>
           <LinkOverlay href={hrefLink}>
-            {history.address}
+            {history.alamat_tujuan}
           </LinkOverlay>
         </Heading>
       </CardHeader>
@@ -40,7 +40,7 @@ export default function HistoryCard({history} : paramInterface) {
               Nama Pemesan
             </Text>
             <Text>
-              {history.customerName}
+              {history.nama_penerima}
             </Text>
           </Box>
           <Box>
@@ -48,7 +48,7 @@ export default function HistoryCard({history} : paramInterface) {
               Ongkos Kirim
             </Text>
             <Text>
-              {history.salary}
+              {history.biaya_pengiriman}
             </Text>
           </Box>
           <Box>
