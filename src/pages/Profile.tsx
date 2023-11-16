@@ -11,6 +11,7 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
+  Center,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import UserInterface from '../interfaces/UserInterface';
@@ -50,7 +51,7 @@ export default function Profile() {
 
   useEffect(() => {
     if(!username) {
-      alert("Perlu login");
+      alert("Perlu log in");
       return;
     }
     getUserDetail(username).then((res) => {
@@ -62,7 +63,7 @@ export default function Profile() {
 
   return (
     <Flex
-      h={'110vh'}
+      h={'130vh'}
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('red.800', 'white')}>
@@ -83,7 +84,7 @@ export default function Profile() {
               bg: 'blue.500',
             }}
             >
-            Edit Photo
+            Edit photo
           </Button> 
           : 
           <></>}
@@ -95,29 +96,32 @@ export default function Profile() {
           boxShadow={'lg'}
           pl={8}
           pr={8}
+          pt={4}
+          pb={8}
           >
           <form onSubmit={handleSubmit}>
             <Stack spacing={4}>
-              <Text fontWeight="bold">Username:</Text>
+              <Center><Heading>Profile</Heading></Center>
+              <Text fontWeight="bold">Username</Text>
               <Text>{userDetail?.username}</Text>
               <FormControl id="email" isRequired isInvalid={!emailValid} onBlur={revalidateEmail}>
-                <FormLabel>Email:</FormLabel>
+                <FormLabel fontWeight="bold">Email address</FormLabel>
                 <Input name="email" type="email" 
                   value={userDetail.email} 
                   onChange={handleChange}
                   borderColor={"black"}
                   />
-                <FormErrorMessage>Email already used</FormErrorMessage>
+                <FormErrorMessage>Email address has already been used</FormErrorMessage>
               </FormControl>
               <FormControl id="name" isRequired>
-                <FormLabel>Name</FormLabel>
+                <FormLabel fontWeight="bold">Name</FormLabel>
                 <Input name="name" type="text" 
                   value={userDetail.name} 
                   onChange={handleChange}
                   borderColor={"black"}
                   />
               </FormControl>
-              <Text fontWeight="bold">Saldo:</Text>
+              <Text fontWeight="bold">Saldo</Text>
               <Text>{userDetail?.saldo}</Text>
               <Button
               bg={'blue.400'}
@@ -127,7 +131,7 @@ export default function Profile() {
               }}
               type={"submit"}
               >
-                Save Profile
+                Save profile
               </Button>
             </Stack>
           </form>
@@ -139,26 +143,29 @@ export default function Profile() {
           boxShadow={'lg'}
           pl={8}
           pr={8}
+          pt={4}
+          pb={8}
           >
-          <Stack spacing={4}>
-            <Text fontWeight="bold">Username:</Text>
-            <Text>{userDetail?.username}</Text>
-            <Text fontWeight="bold">Email:</Text>
-            <Text>{userDetail?.email}</Text>
-            <Text fontWeight="bold">Name:</Text>
-            <Text>{userDetail?.name}</Text>
-            <Text fontWeight="bold">Saldo:</Text>
-            <Text>{userDetail?.saldo}</Text>
-            <Button
-            bg={'blue.400'}
-            color={'white'}
-            _hover={{
-              bg: 'blue.500',
-            }}
-            onClick={() => setIsEditing(true)}>
-              Edit Profile
-            </Button>
-          </Stack>
+            <Stack spacing={4}>
+                <Center><Heading>Profile</Heading></Center>
+                <Text fontWeight="bold">Username</Text>
+                <Text>{userDetail?.username}</Text>
+                <Text fontWeight="bold">Email address</Text>
+                <Text>{userDetail?.email}</Text>
+                <Text fontWeight="bold">Name</Text>
+                <Text>{userDetail?.name}</Text>
+                <Text fontWeight="bold">Saldo</Text>
+                <Text>{userDetail?.saldo}</Text>
+                <Button
+                bg={'blue.400'}
+                color={'white'}
+                _hover={{
+                bg: 'blue.500',
+                }}
+                onClick={() => setIsEditing(true)}>
+                Edit profile
+                </Button>
+            </Stack>
         </Box>
         }
       </Stack>
