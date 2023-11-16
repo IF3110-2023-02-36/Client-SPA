@@ -4,51 +4,28 @@ import {
   Stack,
 } from '@chakra-ui/react'
 import OrderInterface from '../interfaces/OrderInterface';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PickedOrderCard from '../components/PickedOrderCard';
+import { getOrderByCourier } from '../utils/Order';
+import { getUser } from '../utils/LocalStorage';
+import { getUserDetail } from '../utils/Profile';
 
-// TODO : fetch data from SOAP
-const dummyData : OrderInterface[] = [
-  {
-    alamat : "jl. imam bonjol no.69",
-    nama_penerima : "ukin",
-    biaya_pengiriman : 100,
-    keterangan : "dimas lagi main sama mas ukin"
-  },
-  {
-    alamat : "bullet",
-    nama_penerima : "ishraul",
-    biaya_pengiriman : 1111,
-    keterangan : "aku butuh peluru"
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69,
-    keterangan : "aku akan datang"
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69,
-    keterangan : "aku akan datang"
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69,
-    keterangan : "aku akan datang"
-  },
-  {
-    alamat : "jl.ngawi",
-    nama_penerima : "rusdi",
-    biaya_pengiriman : 69,
-    keterangan : "aku akan datang"
-  }
-];
 
 export default function PickedOrder() {
-  const [orders, setOrders] = useState<OrderInterface[]>(dummyData);
+  const username = getUser();
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
+
+  useEffect(() => {
+    getUserDetail(username ? username : "").then(
+      (userDetail) => {
+        const response = getOrderByCourier(userDetail.data.id);
+        response.then((orders) => {
+          console.log(orders.data);
+          setOrders(orders.data);
+        });
+      }
+    );
+  }, []);
 
   return (
     <Box

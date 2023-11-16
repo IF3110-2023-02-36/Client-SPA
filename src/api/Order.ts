@@ -37,3 +37,14 @@ export async function fetchOrderDetails(orderId : number) {
     }
 }
 
+export async function fetchOrderByCourier(courierId : number) {
+    try {
+        const API_URL = REST_URL + "/order/order-courier/" + courierId;
+        const response = await axios.get<OrderDetail[]>(API_URL);
+        return response;
+    } catch(err) {
+        alert(err);
+        throw err;
+    }
+}
+
