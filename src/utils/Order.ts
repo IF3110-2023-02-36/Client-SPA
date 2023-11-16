@@ -1,4 +1,4 @@
-import { fetchAvailableOrder, fetchOrderByCourier, fetchOrderById, fetchOrderDetails } from "../api/Order";
+import { fetchAvailableOrder, fetchOrderByCourier, fetchOrderById, fetchOrderDetails, pickOrderAPI } from "../api/Order";
 
 export async function getAvailableOrder() {
     const availableOrders = await fetchAvailableOrder();
@@ -18,4 +18,9 @@ export async function getOrderDetails(orderId : number) {
 export async function getOrderByCourier(courierId : number) {
     const orders = await fetchOrderByCourier(courierId);
     return orders;
+}
+
+export async function pickOrder(orderId : number, username : string) {
+    const response = await pickOrderAPI(orderId, username);
+    return response;
 }

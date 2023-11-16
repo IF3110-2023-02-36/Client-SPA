@@ -16,8 +16,9 @@ import {
 import { useEffect, useState } from 'react'
 import OrderDetail from '../interfaces/OrderDetail';
 import OrderInterface from '../interfaces/OrderInterface';
-import { useParams } from 'react-router-dom';
-import { getOrderById, getOrderDetails } from '../utils/Order';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getOrderById, getOrderDetails, pickOrder } from '../utils/Order';
+import { getUser } from '../utils/LocalStorage';
 
 
 export default function AvailableOrderDetail() {
@@ -25,6 +26,18 @@ export default function AvailableOrderDetail() {
   const orderId = parseInt(id ? id : "0");
   const [order, setOrder] = useState<OrderInterface>();
   const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
+  const navigate = useNavigate();
+
+  function pickOrderAction() {
+    const username = getUser();
+    if(!username) {
+      alert("Perlu log in");
+      return;
+    }
+    
+    pickOrder(orderId, username);
+    navigate("/PickedOrder");
+  }
 
   useEffect(() => {
     const orderResponse = getOrderById(orderId);
@@ -96,7 +109,6 @@ export default function AvailableOrderDetail() {
               </Tbody>
             </Table>
           </TableContainer>
-          {/* TODO : implement pick order */}
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
@@ -106,6 +118,7 @@ export default function AvailableOrderDetail() {
             _hover={{
               bg: 'blue.300',
             }}
+            onClick={pickOrderAction}
             >
             Ambil Order
           </Button>

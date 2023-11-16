@@ -48,3 +48,15 @@ export async function fetchOrderByCourier(courierId : number) {
     }
 }
 
+export async function pickOrderAPI(orderId : number, username : string) {
+    try {
+        const API_URL = REST_URL + "/order/pick-order";
+        const data = {orderId : orderId, username : username};
+        const response = await axios.put(API_URL, data);
+        return response;
+    } catch(err) {
+        alert(err);
+        throw err;
+    }
+}
+
