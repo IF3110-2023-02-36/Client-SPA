@@ -13,6 +13,7 @@ import PickedOrderDetail from './pages/PickedOrderDetail'
 import History from './pages/History'
 import HistoryDetail from './pages/HistoryDetail'
 import Profile from './pages/Profile'
+import Home from './pages/Home'
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
       <>
         <Navbar/>
         <Routes>
+          <Route path='' element={<Home/>}/>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/Home' element={<Home/>}/>
           <Route path='/Balance' element={<Balance/>}/>
           <Route path='/AvailableOrder' element={<AvailableOrder/>}/>
           <Route path='/AvailableOrderDetail/:id' element={<AvailableOrderDetail/>}/>
