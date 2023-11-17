@@ -19,39 +19,50 @@ import {
 import { useEffect, useState } from 'react'
 import OrderDetail from '../interfaces/OrderDetail';
 import OrderInterface from '../interfaces/OrderInterface';
-import { getOrderById, getOrderDetails, updateOrder } from '../utils/Order';
-import { useParams } from 'react-router-dom';
+import { finishOrder, getOrderById, getOrderDetails, updateOrder } from '../utils/Order';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getUser } from '../utils/LocalStorage';
 
 
 export default function PickedOrderDetail() {
-  const username = getUser();
+  const user = getUser();
   const { id } = useParams();
   const orderId = parseInt(id ? id : "0");
   const [order, setOrder] = useState<OrderInterface>();
   const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
   const [pickupStatus, setPickupStatus] = useState(false);
   const [newDescription, setNewDescription] = useState("");
+  const navigate = useNavigate();
 
   function changeDescription() {
-    if(!username) {
+    if(!user.username) {
       alert("Perlu log in");
       return;
     }
     
-    updateOrder(orderId, username, order?.status ? order.status : "pickup", newDescription);
-    setOrder({...order, keterangan : newDescription})
+    updateOrder(orderId, user.username, order?.status ? order.status : "pickup", newDescription);
+    setOrder({...order, keterangan : newDescription});
   }
 
   function changeTransit() {
-    if(!username) {
+    if(!user.username) {
       alert("Perlu log in");
       return;
     }
     
-    updateOrder(orderId, username, "transit", order?.keterangan ? order.keterangan : "");
-    setOrder({...order, status : "transit"})
+    updateOrder(orderId, user.username, "transit", order?.keterangan ? order.keterangan : "");
+    setOrder({...order, status : "transit"});
     setPickupStatus(false);
+  }
+
+  function finishingOrder() {
+    if(!user.username) {
+      alert("Perlu log in");
+      return;
+    }
+
+    finishOrder(orderId, user.username);
+    navigate("/History");
   }
 
   useEffect(() => {
@@ -176,7 +187,6 @@ export default function PickedOrderDetail() {
           :
           <>
           </>}
-          {/* TODO : make button functionality */}
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
@@ -186,6 +196,7 @@ export default function PickedOrderDetail() {
             _hover={{
               bg: 'blue.300',
             }}
+            onClick={finishingOrder}
             >
             Selesaikan Pengantaran
           </Button>

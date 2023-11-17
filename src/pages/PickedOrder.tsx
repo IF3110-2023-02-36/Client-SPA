@@ -18,7 +18,7 @@ export default function PickedOrder() {
   useEffect(() => {
     getUserDetail(user.username ? user.username : "").then(
       (userDetail) => {
-        const response = getOrderByCourier(userDetail.data.id);
+        const response = getOrderByCourier(userDetail.data.id ? userDetail.data.id : 0);
         response.then((order) => {
           console.log(order.data);
           setOrders(order.data);

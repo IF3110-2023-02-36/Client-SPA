@@ -72,3 +72,16 @@ export async function updateOrderAPI(orderId : number, username : string, status
         throw err;
     }
 }
+
+export async function finishOrderAPI(orderId : number, username : string) {
+    try {
+        const API_URL = REST_URL + "/order/finish-order";
+        const data = {orderId : orderId, username : username};
+        console.log("GOLGOLOG", data);
+        const response = await axios.put(API_URL, data);
+        return response;
+    } catch(err) {
+        alert(err);
+        throw err;
+    }
+}
