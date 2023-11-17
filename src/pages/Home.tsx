@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Heading, Text, Button, useBreakpointValue } from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
 
@@ -5,6 +6,11 @@ export default function Home() {
     const headingSize = useBreakpointValue({ base: 'xl', md: '2xl' });
     const textSize = useBreakpointValue({ base: 'md', md: 'xl' });
     const buttonSize = useBreakpointValue({ base: 'md', md: 'lg' });
+    const navigate = useNavigate();
+
+    const navigateToAvailableOrders = () => {
+        navigate('/AvailableOrder');
+    }
 
     return (
         <>
@@ -16,7 +22,7 @@ export default function Home() {
                 <Text fontSize={textSize} mb={6}>
                     Manage your orders all in one place
                 </Text>
-                <Button colorScheme="teal" size={buttonSize} onClick={() => { window.location.href = '/AvailableOrder' }}>
+                <Button colorScheme="teal" size={buttonSize} onClick={navigateToAvailableOrders} aria-label="Navigate to available orders">
                     View available orders
                 </Button>
             </Box>
