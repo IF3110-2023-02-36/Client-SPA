@@ -15,16 +15,16 @@ import { getBalance, withdrawFunction } from '../utils/Balance';
 import { getUser } from '../utils/LocalStorage';
 
 export default function Balance() {
-  const username = getUser();
+  const user = getUser();
   const [balance, setBalance] = useState(0);
   const [withdrawBalance, setWithdrawBalance] = useState(0);
   
   function handleSubmit() {
-    if(!username) {
+    if(!user.username) {
       alert("Perlu login");
       return;
     }
-    const response = withdrawFunction(username, withdrawBalance);
+    const response = withdrawFunction(user.username, withdrawBalance);
     response.then((success) => {
       if(success) {
         setBalance(balance - withdrawBalance);
@@ -36,15 +36,15 @@ export default function Balance() {
   }
 
   useEffect(() => {
-    if(!username) {
+    if(!user.username) {
       alert("Perlu login");
       return;
     }
-    getBalance(username).then((res) => {
+    getBalance(user.username).then((res) => {
       console.log(res);
       setBalance(res.data);
     });
-  }, [username]);
+  }, [user]);
 
   return (
     <Flex

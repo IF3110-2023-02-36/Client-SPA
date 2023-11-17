@@ -29,13 +29,13 @@ export default function AvailableOrderDetail() {
   const navigate = useNavigate();
 
   function pickOrderAction() {
-    const username = getUser();
-    if(!username) {
+    const user = getUser();
+    if(!user.username) {
       alert("Perlu log in");
       return;
     }
     
-    pickOrder(orderId, username);
+    pickOrder(orderId, user.username);
     navigate("/PickedOrder");
   }
 

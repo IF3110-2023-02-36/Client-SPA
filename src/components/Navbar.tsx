@@ -92,7 +92,7 @@ export default function Navbar() {
             _hover={{
               bg: 'pink.300',
             }}>
-            {getUser()}
+            {getUser().username}
           </Button>
           <Button
             as={'a'}

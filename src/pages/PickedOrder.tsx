@@ -12,11 +12,11 @@ import { getUserDetail } from '../utils/Profile';
 
 
 export default function PickedOrder() {
-  const username = getUser();
+  const user = getUser();
   const [orders, setOrders] = useState<OrderInterface[]>([]);
 
   useEffect(() => {
-    getUserDetail(username ? username : "").then(
+    getUserDetail(user.username ? user.username : "").then(
       (userDetail) => {
         const response = getOrderByCourier(userDetail.data.id);
         response.then((order) => {

@@ -6,16 +6,14 @@ import {
 import HistoryInterface from '../interfaces/HistoryInterface';
 import { useEffect, useState } from 'react'
 import HistoryCard from '../components/HistoryCard';
-import { getUser } from '../utils/LocalStorage';
 import { getHistory } from '../utils/History';
 
 
 export default function History() {
-  const username = getUser();
   const [histories, setHistories] = useState<HistoryInterface[]>([]);
 
   useEffect(() => {
-    const response = getHistory(username ? username : "");
+    const response = getHistory();
     response.then((history) => {
       setHistories(history);
     });

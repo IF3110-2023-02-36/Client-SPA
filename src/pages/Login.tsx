@@ -43,9 +43,9 @@ export default function Login() {
     if(usernameValid) {
       const response = validateLogin(formData.username,
                                       formData.password);
-      response.then((success) => {
-        if(success) {
-          setUser(formData.username);
+      response.then((responseData) => {
+        if(responseData !== "gagal") {
+          setUser(formData.username, responseData);
           navigate('/');
         }else {
           setPasswordValid(false);

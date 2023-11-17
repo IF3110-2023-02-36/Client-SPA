@@ -22,7 +22,8 @@ import { validateEmail } from '../utils/Login';
 
 
 export default function Profile() {
-  const username = getUser();
+  const user = getUser();
+  const username = user.username;
   const [isEditing, setIsEditing] = useState(false);
   const [userDetail, setUserDetail] = useState<UserInterface>({username : "",
                                                                 name : "",

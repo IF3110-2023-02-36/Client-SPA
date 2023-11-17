@@ -19,12 +19,10 @@ export function validateConfirmPassword(password : string, confirmPassword : str
 
 export async function validateRegister(username : string, name : string, email : string, password : string) {
     const response = await register(username, name, email, password);
-    const success = (response.data === "success");
-    return success;
+    return response.data;
 }
 
 export async function validateLogin(username : string, password : string) {
     const response = await login(username, password);
-    const success = (response.data === "success");
-    return success;
+    return response.data;
 }

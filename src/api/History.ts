@@ -1,13 +1,15 @@
 import axios from "axios";
 import HistoryInterface from "../interfaces/HistoryInterface";
 import HistoryDetailInterface from "../interfaces/HistoryDetailInterface";
+import { getUser } from "../utils/LocalStorage";
 
 const REST_URL = "http://localhost:5000"; // TODO : using env
 
-export async function fetchHistory(username : string) {
+export async function fetchHistory() {
     try {
-        const API_URL = REST_URL + "/history/" + username;
-        const response = await axios.get<HistoryInterface[]>(API_URL);
+        const API_URL = REST_URL + "/history";
+        let header = { headers: {"Authorization" : `Bearer ${getUser().jwt}`} };
+        const response = await axios.get<HistoryInterface[]>(API_URL, header);
         return response;
     } catch(err) {
         alert(err);

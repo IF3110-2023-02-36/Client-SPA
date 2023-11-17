@@ -61,8 +61,8 @@ export default function Register() {
                                         formData.name,
                                         formData.email,
                                         formData.password);
-      response.then(() => {
-        setUser(formData.username);
+      response.then((res) => {
+        setUser(formData.username, res);
         navigate('/');
       });
     }

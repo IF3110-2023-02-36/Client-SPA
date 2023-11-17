@@ -1,7 +1,7 @@
 import { fetchHistory, fetchHistoryById, fetchHistoryDetails } from "../api/History";
 
-export async function getHistory(username : string) {
-    const response = await fetchHistory(username);
+export async function getHistory() {
+    const response = await fetchHistory();
     const histories = response.data;
     return histories;
 }
