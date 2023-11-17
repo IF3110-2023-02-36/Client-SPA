@@ -25,7 +25,7 @@ export default function PickedOrder() {
         });
       }
     );
-  }, []);
+  }, [user]);
 
   return (
     <Box

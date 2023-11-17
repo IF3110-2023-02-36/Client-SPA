@@ -76,21 +76,7 @@ export default function Profile() {
           {/* TODO : fetch real photo image */}
           <Avatar size="xl" name="John Doe" src="https://via.placeholder.com/150" />
           <Heading size="lg">{userDetail?.name}</Heading>
-          {isEditing ?
-          // TODO : edit photo logic
-          <Button
-            bg={'blue.400'}
-            color={'white'}
-            _hover={{
-              bg: 'blue.500',
-            }}
-            >
-            Edit photo
-          </Button> 
-          : 
-          <></>}
         </Stack>
-        {isEditing ? 
         <Box
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
@@ -100,53 +86,44 @@ export default function Profile() {
           pt={4}
           pb={8}
           >
-          <form onSubmit={handleSubmit}>
-            <Stack spacing={4}>
-              <Center><Heading>Profile</Heading></Center>
-              <Text fontWeight="bold">Username</Text>
-              <Text>{userDetail?.username}</Text>
-              <FormControl id="email" isRequired isInvalid={!emailValid} onBlur={revalidateEmail}>
-                <FormLabel fontWeight="bold">Email address</FormLabel>
-                <Input name="email" type="email" 
-                  value={userDetail.email} 
-                  onChange={handleChange}
-                  borderColor={"black"}
-                  />
-                <FormErrorMessage>Email address has already been used</FormErrorMessage>
-              </FormControl>
-              <FormControl id="name" isRequired>
-                <FormLabel fontWeight="bold">Name</FormLabel>
-                <Input name="name" type="text" 
-                  value={userDetail.name} 
-                  onChange={handleChange}
-                  borderColor={"black"}
-                  />
-              </FormControl>
-              <Text fontWeight="bold">Saldo</Text>
-              <Text>{userDetail?.saldo}</Text>
-              <Button
-              bg={'blue.400'}
-              color={'white'}
-              _hover={{
-                bg: 'blue.500',
-              }}
-              type={"submit"}
-              >
-                Save profile
-              </Button>
-            </Stack>
-          </form>
-        </Box>
-        :
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          pl={8}
-          pr={8}
-          pt={4}
-          pb={8}
-          >
+          {isEditing ? 
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={4}>
+                <Center><Heading>Profile</Heading></Center>
+                <Text fontWeight="bold">Username</Text>
+                <Text>{userDetail?.username}</Text>
+                <FormControl id="email" isRequired isInvalid={!emailValid} onBlur={revalidateEmail}>
+                  <FormLabel fontWeight="bold">Email address</FormLabel>
+                  <Input name="email" type="email" 
+                    value={userDetail.email} 
+                    onChange={handleChange}
+                    borderColor={"black"}
+                    />
+                  <FormErrorMessage>Email address has already been used</FormErrorMessage>
+                </FormControl>
+                <FormControl id="name" isRequired>
+                  <FormLabel fontWeight="bold">Name</FormLabel>
+                  <Input name="name" type="text" 
+                    value={userDetail.name} 
+                    onChange={handleChange}
+                    borderColor={"black"}
+                    />
+                </FormControl>
+                <Text fontWeight="bold">Saldo</Text>
+                <Text>{userDetail?.saldo}</Text>
+                <Button
+                bg={'blue.400'}
+                color={'white'}
+                _hover={{
+                  bg: 'blue.500',
+                }}
+                type={"submit"}
+                >
+                  Save profile
+                </Button>
+              </Stack>
+            </form>
+          :
             <Stack spacing={4}>
                 <Center><Heading>Profile</Heading></Center>
                 <Text fontWeight="bold">Username</Text>
@@ -167,8 +144,8 @@ export default function Profile() {
                 Edit profile
                 </Button>
             </Stack>
+          }
         </Box>
-        }
       </Stack>
     </Flex>
   );

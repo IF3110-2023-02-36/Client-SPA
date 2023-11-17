@@ -52,7 +52,7 @@ export default function AvailableOrderDetail() {
       setOrderDetails(response.data);
       console.log("detail", response.data);
     });
-  }, []);
+  }, [orderId]);
 
   return (
     <Box

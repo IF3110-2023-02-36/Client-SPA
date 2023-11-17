@@ -8,7 +8,7 @@ const REST_URL = "http://localhost:5000"; // TODO : using env
 export async function fetchHistory() {
     try {
         const API_URL = REST_URL + "/history";
-        let header = { headers: {"Authorization" : `Bearer ${getUser().jwt}`} };
+        const header = { headers: {"Authorization" : `Bearer ${getUser().jwt}`} };
         const response = await axios.get<HistoryInterface[]>(API_URL, header);
         return response;
     } catch(err) {

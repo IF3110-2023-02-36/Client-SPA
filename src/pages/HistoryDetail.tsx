@@ -38,7 +38,7 @@ export default function HistoryDetail() {
       setHistoryDetails(response);
       console.log("detail", response);
     });
-  }, []);
+  }, [historyId]);
 
   return (
     <Box

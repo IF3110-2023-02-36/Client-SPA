@@ -80,7 +80,7 @@ export default function PickedOrderDetail() {
       console.log("detail", response.data);
     });
 
-  }, []);
+  }, [orderId]);
   
   return (
     <Box

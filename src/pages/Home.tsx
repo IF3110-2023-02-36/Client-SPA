@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Button,
-  Center,
   Flex,
   Heading,
   Stack,
@@ -13,8 +12,6 @@ import { useEffect, useState } from 'react'
 import { getUserDetail } from '../utils/Profile';
 import { getUser } from '../utils/LocalStorage';
 import UserInterface from '../interfaces/UserInterface';
-import OrderInterface from '../interfaces/OrderInterface';
-import History from '../interfaces/HistoryInterface';
 import { getAvailableOrder, getOrderByCourier } from '../utils/Order';
 import { getHistory } from '../utils/History';
 
@@ -110,4 +107,4 @@ export default function Home() {
       </Stack>
     </Flex>
   );
-};
+}
