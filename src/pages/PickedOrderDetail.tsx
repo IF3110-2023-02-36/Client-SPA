@@ -19,16 +19,40 @@ import {
 import { useEffect, useState } from 'react'
 import OrderDetail from '../interfaces/OrderDetail';
 import OrderInterface from '../interfaces/OrderInterface';
-import { getOrderById, getOrderDetails } from '../utils/Order';
+import { getOrderById, getOrderDetails, updateOrder } from '../utils/Order';
 import { useParams } from 'react-router-dom';
+import { getUser } from '../utils/LocalStorage';
 
 
 export default function PickedOrderDetail() {
+  const username = getUser();
   const { id } = useParams();
   const orderId = parseInt(id ? id : "0");
   const [order, setOrder] = useState<OrderInterface>();
   const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
+  const [pickupStatus, setPickupStatus] = useState(false);
   const [newDescription, setNewDescription] = useState("");
+
+  function changeDescription() {
+    if(!username) {
+      alert("Perlu log in");
+      return;
+    }
+    
+    updateOrder(orderId, username, order?.status ? order.status : "pickup", newDescription);
+    setOrder({...order, keterangan : newDescription})
+  }
+
+  function changeTransit() {
+    if(!username) {
+      alert("Perlu log in");
+      return;
+    }
+    
+    updateOrder(orderId, username, "transit", order?.keterangan ? order.keterangan : "");
+    setOrder({...order, status : "transit"})
+    setPickupStatus(false);
+  }
 
   useEffect(() => {
     const orderResponse = getOrderById(orderId);
@@ -36,6 +60,7 @@ export default function PickedOrderDetail() {
 
     orderResponse.then((response) => {
       setOrder(response.data);
+      setPickupStatus(response.data?.status === "pickup");
       console.log("order", response.data);
     });
 
@@ -43,6 +68,7 @@ export default function PickedOrderDetail() {
       setOrderDetails(response.data);
       console.log("detail", response.data);
     });
+
   }, []);
   
   return (
@@ -100,7 +126,14 @@ export default function PickedOrderDetail() {
               </Tbody>
             </Table>
           </TableContainer>
-          
+        <Box>
+          <Text fontSize={"lg"} fontWeight={"bold"}>
+            Status
+          </Text>
+          <Text>
+            {order?.status}
+          </Text>
+        </Box>
         <Stack spacing={4}>
           <Box>
             <Text fontSize={"lg"} fontWeight={"bold"}>
@@ -118,25 +151,32 @@ export default function PickedOrderDetail() {
               borderColor={"black"}
               />
           </FormControl>
+          <Button
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+            bg: 'blue.500',
+            }}
+            onClick={changeDescription}
+            >
+            Ubah Keterangan
+          </Button>
+          {pickupStatus
+          ? 
+          <Button
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+            bg: 'blue.500',
+            }}
+            onClick={changeTransit}
+            >
+            Transit Pesanan
+          </Button>
+          :
+          <>
+          </>}
           {/* TODO : make button functionality */}
-          <Button
-              bg={'blue.400'}
-              color={'white'}
-              _hover={{
-              bg: 'blue.500',
-              }}
-              type="submit">
-              Ubah Keterangan
-          </Button>
-          <Button
-              bg={'blue.400'}
-              color={'white'}
-              _hover={{
-              bg: 'blue.500',
-              }}
-              >
-              Transit Pesanan
-          </Button>
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}

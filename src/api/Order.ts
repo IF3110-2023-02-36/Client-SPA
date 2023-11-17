@@ -60,3 +60,15 @@ export async function pickOrderAPI(orderId : number, username : string) {
     }
 }
 
+export async function updateOrderAPI(orderId : number, username : string, status : string, description : string) {
+    try {
+        const API_URL = REST_URL + "/order/order/" + orderId;
+        const data = {username : username, status : status, description};
+        console.log("GOLGOLOG", data);
+        const response = await axios.put(API_URL, data);
+        return response;
+    } catch(err) {
+        alert(err);
+        throw err;
+    }
+}
